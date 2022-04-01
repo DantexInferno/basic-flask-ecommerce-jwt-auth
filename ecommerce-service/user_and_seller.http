@@ -1,0 +1,86 @@
+###login
+POST http://localhost:8000/users/login
+Content-Type: application/json
+
+{   
+    "email": "test2@test.com",
+    "password": "test123"
+
+}
+
+###logout
+GET http://localhost:8000/users/logout
+
+
+###get all users
+GET http://localhost:8000/users
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJjNjZjN2YxMy1iYzk4LTQ3NzktYTIyMy05ZjBhNjg1MzkwMzMiLCJleHAiOjE2NDg4NDk5NDd9.pHySxMUr9Nzk2CTmQPnYZunRe5AFyQKZMw8BzwS2eD8
+
+
+###create user
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{   
+    "name": "virgil",
+    "email": "test2@test.com",
+    "password": "test123",
+    "role": "Seller User",
+    "shipping_address": "nor djdjdjd"
+}
+
+
+### get user by id
+GET http://localhost:8000/users/3
+
+
+### update user
+PUT http://localhost:8000/users/1
+Content-Type: application/json
+
+{
+    "password": "test1234"
+}
+
+
+### delete user.
+DELETE http://localhost:8000/users/4
+
+
+###get all sellers
+GET http://localhost:8000/sellers
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJlYjgzNzgyMi1iNDljLTQ1ZDctYmZhNi04ZWE4YTRmYTc1ZmQiLCJleHAiOjE2NDg4NTAyMDN9.4as7U1A4s20rflpspP9VeRlr_QRT1k_qhTbqS-JeKSo
+
+
+###create seller
+POST http://localhost:8000/sellers
+Content-Type: application/json
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJlYjgzNzgyMi1iNDljLTQ1ZDctYmZhNi04ZWE4YTRmYTc1ZmQiLCJleHAiOjE2NDg4NDY4NTJ9.hb_h3lKuQ0NniMK87IoAZAenPuWOjEwie0N68Mmd7jM
+
+
+{
+    "name": "wallmart",
+    "description": "sell everything",
+    "user_seller_id": 2,
+    "warehouse": "nort 222 aveniue"
+}
+
+
+### get seller by id
+GET http://localhost:8000/sellers/2
+
+
+### update seller
+PUT http://localhost:8000/sellers/1
+Content-Type: application/json
+
+{
+    "name": "walkmar",
+    "description": "seller technology advanced",
+    "user_seller_id": 1,
+    "warehouse": "linkon east 21"
+}
+
+
+### delete user.
+DELETE http://localhost:8000/sellers/3

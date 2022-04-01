@@ -1,0 +1,47 @@
+version: "3"
+services:
+  
+  #ecommerce-service block
+  ecommerce-app:
+  
+    build: ${ECOMMERCE_SERVICE_PATH}/Docker/app/.
+  
+    container_name: ${ECOMMERCE_SERVICE_NAME}
+  
+    env_file:
+      - ${ECOMMERCE_SERVICE_PATH}/Docker/app/.env
+      - .env
+    
+    environment:
+      - SQL_ALCHEMY_HOST=${ECOMMERCE_MYSQL_NAME}
+      - SQL_ALCHEMY_DATABASE=${ECOMMERCE_MYSQL_DATABASE}
+
+    command: ["gunicorn", "-b", "0.0.0.0:8000", "src.main:app", "--reload", "-t 60"]
+  
+    volumes:
+      - ${ECOMMERCE_SERVICE_PATH}/src:/app/src
+      - ${ECOMMERCE_SERVICE_PATH}/tests:/app/tests
+
+    ports:
+      - ${ECOMMERCE_APP_PORT}:8000
+    
+    depends_on:
+      - ecommerce-mysql
+  
+  ecommerce-mysql:
+  
+    build: ${ECOMMERCE_SERVICE_PATH}/Docker/database/.
+  
+    restart: always
+  
+    container_name: ${ECOMMERCE_MYSQL_NAME}
+  
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${ECOMMERCE_MYSQL_DATABASE}
+
+    ports:
+      - ${ECOMMERCE_MYSQL_PORT}:3306
+  
+    command: 
+      - --default-authentication-plugin=mysql_native_password
