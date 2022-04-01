@@ -1,4 +1,4 @@
-###Flask Ecommerce with jwt authentication
+### Flask Ecommerce with jwt authentication
 
 this is a simple project of a ecommerce with jwt authentication
 
